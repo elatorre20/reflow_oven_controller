@@ -28,10 +28,10 @@ class thermocouple_SPI():
         #the temperature reading is the 2nd-12th bits (bits 14-3 of the read byte)
         #multiply this number by 0.25 to get the reading in degrees C
         self.select()
-        utime.sleep_us(10)
+        utime.sleep_us(10)#time in datasheet to allow measurement response
         read = self.bus.read(2)
         self.deselect()
-        x = int.from_bytes(read, 'big')
+        x = int.from_bytes(read, 'big') #converting two bytes to a 16-bit value
         x = x>>3 #discarding 3 trailing bits
         mask = 0b0111111111111
         y = bin(x) & mask #masking leading zero
