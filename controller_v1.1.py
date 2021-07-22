@@ -32,12 +32,14 @@ def bake(target = 150, time = 5):
         if(ctemp > 50):
             light.value(0)
         ctemp = t0.read()
+        print(ctemp)
         utime.sleep_ms(100)
     deadline = ticks_add(time.ticks_ms(), time*1000)
     while(ticks_diff(deadline, time.ticks_ms()) > 0):
         light.value(0)
         fan.value(0)
         ctemp = t0.read()
+        print(ctemp)
         if( ctemp > target):
             heater_upper.value(1)
             heater_lower.value(1)
@@ -51,6 +53,7 @@ def bake(target = 150, time = 5):
         fan.value(0)
         light.value(0)
         ctemp = t0.read()
+        print(ctemp)
         utime.sleep_ms(100)
     light.value(1)
     fan.value(1)
